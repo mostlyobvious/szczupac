@@ -1,0 +1,19 @@
+PATH
+  remote: .
+  specs:
+    szczupac (0.1.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    minitest (5.18.1)
+
+PLATFORMS
+  arm64-darwin-22
+
+DEPENDENCIES
+  minitest
+  szczupac!
+
+BUNDLED WITH
+   2.4.17
