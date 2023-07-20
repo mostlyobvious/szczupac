@@ -51,4 +51,19 @@ class SzczupacTest < Minitest::Test
     axes = { ruby: rubies, gemfile: gemfiles }
     assert_equal(Szczupac[**axes].map(&:keys), [axes.keys] * 4)
   end
+
+  def test_axis_as_symbol
+    assert_equal(
+      Szczupac.axis(:ruby, rubies),
+      [{ ruby: "3.2" }, { ruby: "3.1" }, { ruby: "3.0" }]
+    )
+  end
+
+  def test_axis_as_string
+    assert_equal(
+      Szczupac.axis("ruby", rubies),
+      [{ "ruby" => "3.2" }, { "ruby" => "3.1" }, { "ruby" => "3.0" }]
+    )
+  end
+
 end

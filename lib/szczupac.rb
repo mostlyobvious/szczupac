@@ -5,6 +5,10 @@ require_relative "szczupac/version"
 module Szczupac
   extend self
 
+  def axis(name, values)
+    values.map { |v| { name => v } }
+  end
+
   def call(**named_lanes)
     named_lanes
       .flat_map do |name, values|
