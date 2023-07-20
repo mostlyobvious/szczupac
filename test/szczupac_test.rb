@@ -17,6 +17,10 @@ class SzczupacTest < Minitest::Test
     %w[binary json]
   end
 
+  def database_urls
+    %w[sqlite postgres mysql]
+  end
+
   def test_generates_viable_combinations_from_two
     assert_equal(
       Szczupac[ruby: rubies, gemfile: gemfiles],
@@ -81,6 +85,22 @@ class SzczupacTest < Minitest::Test
         { ruby: "3.2", gemfile: "Gemfile.rails_6_1" }
       ]
     )
+  end
 
+  def test_permuations
+    assert_equal(
+      Szczupac.permutation(
+        Szczupac.axis(:database_url, database_urls),
+        Szczupac.axis(:data_type, data_types),
+      ),
+      [
+        { database_url: "sqlite", data_type: "binary" },
+        { database_url: "sqlite", data_type: "json" },
+        { database_url: "postgres", data_type: "binary" },
+        { database_url: "postgres", data_type: "json" },
+        { database_url: "mysql", data_type: "binary" },
+        { database_url: "mysql", data_type: "json" },
+      ]
+    )
   end
 end
