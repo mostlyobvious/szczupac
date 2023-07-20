@@ -175,4 +175,14 @@ class SzczupacTest < Minitest::Test
       [%i[ruby gemfile]] * 4
     )
   end
+
+  def test_permutation_always_return_keys_ordered_as_the_input
+    assert_equal(
+      Szczupac.permutation(
+        Szczupac.axis(:database_url, database_urls),
+        Szczupac.axis(:data_type, data_types)
+      ).map(&:keys),
+      [%i[database_url data_type]] * 6
+    )
+  end
 end
