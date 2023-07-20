@@ -3,6 +3,8 @@
 require_relative "szczupac/version"
 
 module Szczupac
+  extend self
+
   def call(**named_lanes)
     named_lanes
       .flat_map do |name, values|
@@ -18,5 +20,5 @@ module Szczupac
       end
       .uniq
   end
-  module_function :call
+  alias [] call
 end
