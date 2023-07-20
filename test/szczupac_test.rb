@@ -103,4 +103,27 @@ class SzczupacTest < Minitest::Test
       ]
     )
   end
+
+  def test_generate_mixed_database_urls
+    assert_equal(
+      Szczupac.generate(
+        Szczupac.axis(:ruby, rubies),
+        Szczupac.axis(:gemfile, %w[Gemfile]),
+        Szczupac.permutation(
+          Szczupac.axis(:database_url, database_urls),
+          Szczupac.axis(:data_type, data_types),
+        )
+      ),
+      [
+        { ruby: "3.2", gemfile: "Gemfile", database_url: "sqlite", data_type: "binary" },
+        { ruby: "3.1", gemfile: "Gemfile", database_url: "sqlite", data_type: "binary" },
+        { ruby: "3.0", gemfile: "Gemfile", database_url: "sqlite", data_type: "binary" },
+        { ruby: "3.2", gemfile: "Gemfile", database_url: "sqlite", data_type: "json" },
+        { ruby: "3.2", gemfile: "Gemfile", database_url: "postgres", data_type: "binary" },
+        { ruby: "3.2", gemfile: "Gemfile", database_url: "postgres", data_type: "json" },
+        { ruby: "3.2", gemfile: "Gemfile", database_url: "mysql", data_type: "binary" },
+        { ruby: "3.2", gemfile: "Gemfile", database_url: "mysql", data_type: "json" },
+      ]
+    )
+  end
 end
