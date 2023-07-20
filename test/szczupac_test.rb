@@ -1,6 +1,9 @@
 require "minitest/autorun"
 require_relative "../lib/szczupac"
 
+
+Minitest::Test.make_my_diffs_pretty!
+
 class SzczupacTest < Minitest::Test
   def rubies
     %w[3.2 3.1 3.0]
