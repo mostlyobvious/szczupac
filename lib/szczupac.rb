@@ -10,12 +10,11 @@ module Szczupac
   end
 
   def generate(*axes)
-    order = axes.flat_map { |a| a.map(&:keys) }.uniq
+    order = axes.flat_map { |a| a.flat_map(&:keys) }.uniq
 
     axes.flat_map do |axis|
       rest = axes - [axis]
       first_options = rest.map(&:first)
-
       axis
         .product([first_options.reduce(&:merge)])
         .map { |product| product.reduce(&:merge) }

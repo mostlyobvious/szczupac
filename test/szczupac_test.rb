@@ -126,4 +126,14 @@ class SzczupacTest < Minitest::Test
       ]
     )
   end
+
+  def test_generate_always_return_keys_ordered_as_the_input
+    assert_equal(
+      Szczupac.generate(
+        Szczupac.axis(:ruby, rubies),
+        Szczupac.axis(:gemfile, gemfiles)
+      ).map(&:keys),
+      [%i[ruby gemfile]] * 4
+    )
+  end
 end
