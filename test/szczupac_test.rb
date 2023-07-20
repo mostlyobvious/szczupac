@@ -13,8 +13,8 @@ class SzczupacTest < Minitest::Test
     %w[Gemfile Gemfile.rails_6_1]
   end
 
-  def data_type
-    %w[jsonb json binary]
+  def data_types
+    %w[binary json]
   end
 
   def test_generates_viable_combinations_from_two
@@ -31,14 +31,13 @@ class SzczupacTest < Minitest::Test
 
   def test_generates_viable_combinations_from_three
     assert_equal(
-      Szczupac[ruby: rubies, gemfile: gemfiles, data_type: data_type],
+      Szczupac[ruby: rubies, gemfile: gemfiles, data_type: data_types],
       [
-        { ruby: "3.2", gemfile: "Gemfile", data_type: "jsonb" },
-        { ruby: "3.1", gemfile: "Gemfile", data_type: "jsonb" },
-        { ruby: "3.0", gemfile: "Gemfile", data_type: "jsonb" },
-        { ruby: "3.2", gemfile: "Gemfile.rails_6_1", data_type: "jsonb" },
+        { ruby: "3.2", gemfile: "Gemfile", data_type: "binary" },
+        { ruby: "3.1", gemfile: "Gemfile", data_type: "binary" },
+        { ruby: "3.0", gemfile: "Gemfile", data_type: "binary" },
+        { ruby: "3.2", gemfile: "Gemfile.rails_6_1", data_type: "binary" },
         { ruby: "3.2", gemfile: "Gemfile", data_type: "json" },
-        { ruby: "3.2", gemfile: "Gemfile", data_type: "binary" }
       ]
     )
   end
