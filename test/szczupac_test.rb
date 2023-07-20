@@ -1,7 +1,6 @@
 require "minitest/autorun"
 require_relative "../lib/szczupac"
 
-
 Minitest::Test.make_my_diffs_pretty!
 
 class SzczupacTest < Minitest::Test
@@ -41,7 +40,7 @@ class SzczupacTest < Minitest::Test
         { ruby: "3.1", gemfile: "Gemfile", data_type: "binary" },
         { ruby: "3.0", gemfile: "Gemfile", data_type: "binary" },
         { ruby: "3.2", gemfile: "Gemfile.rails_6_1", data_type: "binary" },
-        { ruby: "3.2", gemfile: "Gemfile", data_type: "json" },
+        { ruby: "3.2", gemfile: "Gemfile", data_type: "json" }
       ]
     )
   end
@@ -76,7 +75,7 @@ class SzczupacTest < Minitest::Test
     assert_equal(
       Szczupac.generate(
         Szczupac.axis(:ruby, rubies),
-        Szczupac.axis(:gemfile, gemfiles),
+        Szczupac.axis(:gemfile, gemfiles)
       ),
       [
         { ruby: "3.2", gemfile: "Gemfile" },
@@ -91,7 +90,7 @@ class SzczupacTest < Minitest::Test
     assert_equal(
       Szczupac.permutation(
         Szczupac.axis(:database_url, database_urls),
-        Szczupac.axis(:data_type, data_types),
+        Szczupac.axis(:data_type, data_types)
       ),
       [
         { database_url: "sqlite", data_type: "binary" },
@@ -99,7 +98,7 @@ class SzczupacTest < Minitest::Test
         { database_url: "postgres", data_type: "binary" },
         { database_url: "postgres", data_type: "json" },
         { database_url: "mysql", data_type: "binary" },
-        { database_url: "mysql", data_type: "json" },
+        { database_url: "mysql", data_type: "json" }
       ]
     )
   end
@@ -111,18 +110,58 @@ class SzczupacTest < Minitest::Test
         Szczupac.axis(:gemfile, %w[Gemfile]),
         Szczupac.permutation(
           Szczupac.axis(:database_url, database_urls),
-          Szczupac.axis(:data_type, data_types),
+          Szczupac.axis(:data_type, data_types)
         )
       ),
       [
-        { ruby: "3.2", gemfile: "Gemfile", database_url: "sqlite", data_type: "binary" },
-        { ruby: "3.1", gemfile: "Gemfile", database_url: "sqlite", data_type: "binary" },
-        { ruby: "3.0", gemfile: "Gemfile", database_url: "sqlite", data_type: "binary" },
-        { ruby: "3.2", gemfile: "Gemfile", database_url: "sqlite", data_type: "json" },
-        { ruby: "3.2", gemfile: "Gemfile", database_url: "postgres", data_type: "binary" },
-        { ruby: "3.2", gemfile: "Gemfile", database_url: "postgres", data_type: "json" },
-        { ruby: "3.2", gemfile: "Gemfile", database_url: "mysql", data_type: "binary" },
-        { ruby: "3.2", gemfile: "Gemfile", database_url: "mysql", data_type: "json" },
+        {
+          ruby: "3.2",
+          gemfile: "Gemfile",
+          database_url: "sqlite",
+          data_type: "binary"
+        },
+        {
+          ruby: "3.1",
+          gemfile: "Gemfile",
+          database_url: "sqlite",
+          data_type: "binary"
+        },
+        {
+          ruby: "3.0",
+          gemfile: "Gemfile",
+          database_url: "sqlite",
+          data_type: "binary"
+        },
+        {
+          ruby: "3.2",
+          gemfile: "Gemfile",
+          database_url: "sqlite",
+          data_type: "json"
+        },
+        {
+          ruby: "3.2",
+          gemfile: "Gemfile",
+          database_url: "postgres",
+          data_type: "binary"
+        },
+        {
+          ruby: "3.2",
+          gemfile: "Gemfile",
+          database_url: "postgres",
+          data_type: "json"
+        },
+        {
+          ruby: "3.2",
+          gemfile: "Gemfile",
+          database_url: "mysql",
+          data_type: "binary"
+        },
+        {
+          ruby: "3.2",
+          gemfile: "Gemfile",
+          database_url: "mysql",
+          data_type: "json"
+        }
       ]
     )
   end
