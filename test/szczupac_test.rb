@@ -16,7 +16,7 @@ class SzczupacTest < Minitest::Test
 
   def test_generates_viable_combinations_from_two
     assert_equal(
-      Szczupac.call(ruby: rubies, gemfile: gemfiles),
+      Szczupac[ruby: rubies, gemfile: gemfiles],
       [
         { ruby: "3.2", gemfile: "Gemfile" },
         { ruby: "3.1", gemfile: "Gemfile" },
@@ -28,7 +28,7 @@ class SzczupacTest < Minitest::Test
 
   def test_generates_viable_combinations_from_three
     assert_equal(
-      Szczupac.call(ruby: rubies, gemfile: gemfiles, data_type: data_type),
+      Szczupac[ruby: rubies, gemfile: gemfiles, data_type: data_type],
       [
         { ruby: "3.2", gemfile: "Gemfile", data_type: "jsonb" },
         { ruby: "3.1", gemfile: "Gemfile", data_type: "jsonb" },
