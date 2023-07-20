@@ -17,6 +17,7 @@ module Szczupac
           .map { |v| { name => v } }
           .product([first_from_rest])
           .map { |v| v.reduce(&:merge) }
+          .map { |v| v.sort_by { |k, _| named_lanes.keys.index(k) }.to_h }
       end
       .uniq
   end

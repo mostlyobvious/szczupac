@@ -43,9 +43,12 @@ class SzczupacTest < Minitest::Test
   def test_responds_to_square_brackets
     assert_equal(
       Szczupac[ruby: rubies.take(1), gemfile: gemfiles.take(1)],
-      [
-        { ruby: "3.2", gemfile: "Gemfile" }
-      ]
+      [{ ruby: "3.2", gemfile: "Gemfile" }]
     )
+  end
+
+  def test_always_return_keys_ordered_as_the_input
+    axes = { ruby: rubies, gemfile: gemfiles }
+    assert_equal(Szczupac[**axes].map(&:keys), [axes.keys] * 4)
   end
 end
