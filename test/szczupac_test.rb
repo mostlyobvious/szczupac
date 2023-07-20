@@ -66,4 +66,19 @@ class SzczupacTest < Minitest::Test
     )
   end
 
+  def test_generate_from_axes
+    assert_equal(
+      Szczupac.generate(
+        Szczupac.axis(:ruby, rubies),
+        Szczupac.axis(:gemfile, gemfiles),
+      ),
+      [
+        { ruby: "3.2", gemfile: "Gemfile" },
+        { ruby: "3.1", gemfile: "Gemfile" },
+        { ruby: "3.0", gemfile: "Gemfile" },
+        { ruby: "3.2", gemfile: "Gemfile.rails_6_1" }
+      ]
+    )
+
+  end
 end
