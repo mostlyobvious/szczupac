@@ -185,4 +185,33 @@ class SzczupacTest < Minitest::Test
       [%i[database_url data_type]] * 6
     )
   end
+
+  def test_combining
+    assert_equal(
+      [
+        *Szczupac.generate(
+          Szczupac.axis(:database_url, %w[sqlite]),
+          Szczupac.axis(:data_type, %w[binary]),
+        ),
+        *Szczupac.generate(
+          Szczupac.axis(:database_url, %w[postgres_12 postgres_11]),
+          Szczupac.axis(:data_type, %w[binary json jsonb])
+        ),
+        *Szczupac.generate(
+          Szczupac.axis(:database_url, %w[mysql_8 mysql_5]),
+          Szczupac.axis(:data_type, %w[binary json])
+        ),
+      ],
+      [
+        { database_url: "sqlite", data_type:"binary"},
+        { database_url: "postgres_12", data_type: "binary" },
+        { database_url: "postgres_11", data_type: "binary" },
+        { database_url: "postgres_12", data_type: "json" },
+        { database_url: "postgres_12", data_type: "jsonb" },
+        { database_url: "mysql_8", data_type: "binary" },
+        { database_url: "mysql_5", data_type: "binary" },
+        { database_url: "mysql_8", data_type: "json" },
+      ]
+    )
+  end
 end
