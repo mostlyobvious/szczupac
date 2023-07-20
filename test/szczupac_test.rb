@@ -10,6 +10,10 @@ class SzczupacTest < Minitest::Test
     %w[Gemfile Gemfile.rails_6_1]
   end
 
+  def data_type
+    %w[jsonb json binary]
+  end
+
   def test_generates_viable_combinations_from_two
     assert_equal(
       Szczupac.call(ruby: rubies, gemfile: gemfiles),
@@ -18,6 +22,20 @@ class SzczupacTest < Minitest::Test
         { ruby: "3.1", gemfile: "Gemfile" },
         { ruby: "3.0", gemfile: "Gemfile" },
         { ruby: "3.2", gemfile: "Gemfile.rails_6_1" }
+      ]
+    )
+  end
+
+  def test_generates_viable_combinations_from_three
+    assert_equal(
+      Szczupac.call(ruby: rubies, gemfile: gemfiles, data_type: data_type),
+      [
+        { ruby: "3.2", gemfile: "Gemfile", data_type: "jsonb" },
+        { ruby: "3.1", gemfile: "Gemfile", data_type: "jsonb" },
+        { ruby: "3.0", gemfile: "Gemfile", data_type: "jsonb" },
+        { ruby: "3.2", gemfile: "Gemfile.rails_6_1", data_type: "jsonb" },
+        { ruby: "3.2", gemfile: "Gemfile", data_type: "json" },
+        { ruby: "3.2", gemfile: "Gemfile", data_type: "binary" }
       ]
     )
   end
